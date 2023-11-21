@@ -7,3 +7,4 @@ Kelompok 6 :
 6. E1E122055-Ghefira Zahra Nur Fadhilah
 7. E1E122004 - Annisa Nurfadilah
 8. E1E122111 - Muh Gian Amanah Mustakim
+9. E1E122071 - Muhammad Vannes Al Qadri
