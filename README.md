@@ -6,3 +6,4 @@ Kelompok 6 :
 5. E1E122132-Ninis Putri Arafa
 6. E1E122055-Ghefira Zahra Nur Fadhilah
 7. E1E122004 - Annisa Nurfadilah
+8. E1E122111 - Muh Gian Amanah Mustakim
