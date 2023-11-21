@@ -8,3 +8,4 @@ Kelompok 6 :
 7. E1E122004 - Annisa Nurfadilah
 8. E1E122111 - Muh Gian Amanah Mustakim
 9. E1E122071 - Muhammad Vannes Al Qadri
+10. E1E122033 - USRIANTO
