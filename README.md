@@ -10,3 +10,4 @@ Kelompok 6 :
 9. E1E122071 - Muhammad Vannes Al Qadri
 10. E1E122033 - USRIANTO
 11. E1E122096  - Fabelina Agsaria
+12. E1E122061 - Jumain Zulkaidah
