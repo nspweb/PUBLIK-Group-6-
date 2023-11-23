@@ -81,7 +81,7 @@
                                 data-aos-delay="100">
                                 <div class="chef-member">
                                     <div class="member-img">
-                                        <img src="gambar/<?php echo $data[7] ?>" class="img-fluid" alt=""
+                                        <img src="gambar/pengaduan/<?php echo $data[7] ?>" class="img-fluid" alt=""
                                             style="width: 500px; height: 400px;">
                                         <div class="social">
                                             <a href=""><i class="bi bi-twitter"></i></a>
