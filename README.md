@@ -11,3 +11,4 @@ Kelompok 6 :
 10. E1E122033 - USRIANTO
 11. E1E122096  - Fabelina Agsaria
 12. E1E122061 - Jumain Zulkaidah
+13. E1E122134-Nurul Aulia Apriliyanti
