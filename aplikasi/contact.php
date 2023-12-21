@@ -58,10 +58,8 @@
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg" style="background: #3b5998; ">
-    <div class="container">
-      <div class="card">
-        <div class="container" data-aos="fade-up">
-
+      <div class="container" data-aos="fade-up">
+        <div class="card">
 
           <div class="section-header mt-5">
 
@@ -77,7 +75,7 @@
 
               while ($data = mysqli_fetch_array($sql)) {
 
-              ?>
+                ?>
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -102,28 +100,28 @@
                             ?>
                           </h4>
                           <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                           </div>
                         </div>
                       </div>
                       <div class="col-lg-2 text-center">
                         <img src="gambar/anggota/<?php
-                                                  echo $data['foto'];
-                                                  ?>" class="img-fluid testimonial-img" alt="">
+                        echo $data['foto'];
+                        ?>" class="img-fluid testimonial-img" alt="">
                       </div>
                     </div>
                   </div>
                 </div>
-              <?php } ?>
 
+              <?php } ?>
             </div>
             <div class="swiper-pagination"></div>
           </div>
 
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <!-- ======= Events Section ======= -->
 

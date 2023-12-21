@@ -106,7 +106,7 @@
                                 </p>
 
                                 <div class="position-relative mt-4">
-                                    <img src="gambar/pengaduan/<?php echo $data[7]; ?>" class="img-fluid" alt=""
+                                    <img src="gambar/<?php echo $data[7]; ?>" class="img-fluid" alt=""
                                         style="width: 500px; height: 400px;">
 
                                 </div>

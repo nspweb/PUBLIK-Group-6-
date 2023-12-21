@@ -156,6 +156,19 @@ $sessionManager->checkSession();
                     <label for="instansi" class="col-sm-2 col-form-label">Instansi Yang Dituju</label>
                     <div class="col-sm-10">
                       <select name="instansi" id="instansi" class="form-control">
+                        <option value="Polresta Kendari">Polresta Kendari</option>
+                        <option value="Dinas Satpol PP Kendari">Dinas Satpol PP Kendari</option>
+                        <option value="Dinas Satpol PP Kendari">Dinas Satpol PP Kendari</option>
+                        <option value="Dinas Kesehatan(DINKES)Kota Kendari">Dinas(DINKES)Kesehatan Kota Kendari
+                        </option>
+                        <option value="BNN Kota Kendari">BNN Kota Kendari</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
+                    <div class="col-sm-10">
+                      <select name="kategori" id="kategori" class="form-control">
                         <?php
                         $db1 = mysqli_connect('localhost', 'root', '', 'db_publik');
                         $query = 'SELECT * FROM tb_instansi';
@@ -174,17 +187,6 @@ $sessionManager->checkSession();
                           <?php
                         }
                         ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
-                    <div class="col-sm-10">
-                      <select name="kategori" id="kategori" class="form-control">
-                        <option value="Kesehatan">Kesehatan</option>
-                        <option value="Ketertiban">Ketertiban</option>
-                        <option value="Kekerasan">Kekerasan</option>
-                        <option value="Keresahan">Keresahan</option>
                       </select>
                       </select>
                     </div>

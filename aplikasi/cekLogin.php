@@ -1,51 +1,28 @@
 <?php
 
-class Database {
-    private $host = 'localhost';
-    private $username = 'root';
-    private $password = '';
-    private $database = 'db_publik';
-    protected $connection;
+class UserLogin {
+    private $konek;
 
-    public function __construct() {
-        $this->connect();
+    public function __construct($databaseConnection) {
+        $this->konek = $databaseConnection;
     }
 
-    protected function connect() {
-        $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
-
-        if ($this->connection->connect_error) {
-            die('Koneksi database gagal: ' . $this->connection->connect_error);
-        }
-    }
-
-    public function closeConnection() {
-        if ($this->connection) {
-            $this->connection->close();
-        }
-    }
-}
-
-class UserLogin extends Database {
     public function authenticateUser($nik, $password) {
-        $nik = mysqli_real_escape_string($this->connection, $nik);
-        $password = mysqli_real_escape_string($this->connection, $password);
+        $query = mysqli_query($this->konek, "SELECT * FROM tb_user WHERE nik='$nik'");
+        $data = mysqli_fetch_array($query);
 
-        $query = mysqli_query($this->connection, "SELECT * FROM tb_user WHERE nik='$nik' AND password='$password'");
-
-        if ($query) {
-            $data = mysqli_fetch_array($query);
-
-            if ($data) {
+        if (mysqli_num_rows($query) >= 1) {
+            if ($data['password'] == $password) {
+                // Login is valid
                 $this->startSession($data['nik']);
                 header('location:index.php');
             } else {
-                // Incorrect NIK or Password
-                header('location:login.php?pesan=NIK atau Password Salah');
+                // Incorrect password
+                header('location:login.php?pesan=Password Salah');
             }
         } else {
-            // Query execution failed
-            echo "Query execution failed: " . mysqli_error($this->connection);
+            // Incorrect NIK
+            header('location:login.php?pesan=NIK Salah');
         }
     }
 
@@ -55,14 +32,14 @@ class UserLogin extends Database {
     }
 }
 
+// Example usage:
+include 'konek.php';
+
 if (isset($_POST['btnLogin'])) {
     $nik = $_POST['nik'];
     $password = $_POST['password'];
 
-    $userLogin = new UserLogin();
+    $userLogin = new UserLogin($konek);
     $userLogin->authenticateUser($nik, $password);
-
-    $userLogin->closeConnection();
 }
-
 ?>
