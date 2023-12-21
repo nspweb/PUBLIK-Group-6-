@@ -1,34 +1,15 @@
 <!DOCTYPE html>
+
+
 <?php
-
-class SessionManager
-{
-  public function __construct()
-  {
-    session_start();
-  }
-
-  public function checkSession()
-  {
-    if (!isset($_SESSION['nik'])) {
-      $this->redirectLogin();
-    }
-  }
-
-  private function redirectLogin()
-  {
-    header("location:login.php");
-    exit;
-  }
+include 'konek.php';
+session_start();
+if (!isset($_SESSION['nik'])) {
+  header("location: login.php");
+  exit;
 }
-
-// Example usage:
-$sessionManager = new SessionManager();
-$sessionManager->checkSession();
-
-// The rest of your code goes here
-
 ?>
+
 
 <html lang="en">
 
@@ -156,23 +137,8 @@ $sessionManager->checkSession();
                     <label for="instansi" class="col-sm-2 col-form-label">Instansi Yang Dituju</label>
                     <div class="col-sm-10">
                       <select name="instansi" id="instansi" class="form-control">
-                        <option value="Polresta Kendari">Polresta Kendari</option>
-                        <option value="Dinas Satpol PP Kendari">Dinas Satpol PP Kendari</option>
-                        <option value="Dinas Satpol PP Kendari">Dinas Satpol PP Kendari</option>
-                        <option value="Dinas Kesehatan(DINKES)Kota Kendari">Dinas(DINKES)Kesehatan Kota Kendari
-                        </option>
-                        <option value="BNN Kota Kendari">BNN Kota Kendari</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
-                    <div class="col-sm-10">
-                      <select name="kategori" id="kategori" class="form-control">
-                        <?php
-                        $db1 = mysqli_connect('localhost', 'root', '', 'db_publik');
-                        $query = 'SELECT * FROM tb_instansi';
-                        $sql = mysqli_query($db1, $query);
+                      <?php
+                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
 
                         while ($data = mysqli_fetch_array($sql)) {
 
@@ -188,6 +154,16 @@ $sessionManager->checkSession();
                         }
                         ?>
                       </select>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
+                    <div class="col-sm-10">
+                      <select name="kategori" id="kategori" class="form-control">
+                         <option value="Kesehatan">Kesehatan</option>
+                         <option value="Ketertiban">Ketertiban</option>
+                         <option value="Kekerasan">Kekerasan</option>
+                         <option value="Keresahan">Keresahan</option>
                       </select>
                     </div>
                   </div>

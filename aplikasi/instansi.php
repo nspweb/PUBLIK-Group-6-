@@ -69,8 +69,7 @@ include 'konek.php';
                     </thead>
                     <tbody>
                         <?php
-                        $query = 'SELECT * FROM tb_instansi';
-                        $sql = mysqli_query($konek, $query);
+                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
                         $no = 1;
                         while ($data = mysqli_fetch_array($sql)) {
                             ?>

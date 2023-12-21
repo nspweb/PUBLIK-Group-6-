@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include 'konek.php';
+?>
 
 <head>
     <meta charset="utf-8">
@@ -62,18 +65,17 @@
                     <div>
                         <h2 style="text-align: center;"><span>LAPORAN YANG DITERIMA</span></h2>
                     </div>
-                    
-                   
 
-                
+
+
+
 
                     <div class="row gy-4 mt-5">
                         <?php
-                        $koneksi = mysqli_connect("localhost", "root", "", "db_publik");
 
-                        $tampil = mysqli_query($koneksi, "SELECT * FROM tb_pengaduan WHERE id >=1");
+                        $query = mysqli_query($konek, "SELECT * FROM tb_pengaduan WHERE id >=1");
 
-                        while ($data = mysqli_fetch_row($tampil)) {
+                        while ($data = mysqli_fetch_row($query)) {
 
                             ?>
 
@@ -81,7 +83,7 @@
                                 data-aos-delay="100">
                                 <div class="chef-member">
                                     <div class="member-img">
-                                        <img src="gambar/<?php echo $data[7] ?>" class="img-fluid" alt=""
+                                        <img src="gambar/pengaduan/<?php echo $data[7] ?>" class="img-fluid" alt=""
                                             style="width: 500px; height: 400px;">
                                         <div class="social">
                                             <a href=""><i class="bi bi-twitter"></i></a>

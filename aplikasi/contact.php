@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-
-
-
-
+<?php
+include 'konek.php';
+?>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>Home | PUBLIK!!!</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,9 +42,6 @@
   ?>
   <!-- End Navbar-->
 
- 
-
-
 
     <!-- ======= Stats Counter Section ======= -->
 
@@ -58,8 +50,10 @@
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg" style="background: #3b5998; ">
-      <div class="container" data-aos="fade-up">
-        <div class="card">
+    <div class="container">
+      <div class="card">
+        <div class="container" data-aos="fade-up">
+
 
           <div class="section-header mt-5">
 
@@ -69,13 +63,11 @@
           <div class="slides-1 swiper" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper-wrapper">
               <?php
-              $db1 = mysqli_connect('localhost', 'root', '', 'db_publik');
-              $query = 'SELECT * FROM tb_anggota';
-              $sql = mysqli_query($db1, $query);
+              $sql = mysqli_query($konek, 'SELECT * FROM tb_anggota');
 
               while ($data = mysqli_fetch_array($sql)) {
 
-                ?>
+              ?>
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -100,28 +92,28 @@
                             ?>
                           </h4>
                           <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                           </div>
                         </div>
                       </div>
                       <div class="col-lg-2 text-center">
                         <img src="gambar/anggota/<?php
-                        echo $data['foto'];
-                        ?>" class="img-fluid testimonial-img" alt="">
+                                                  echo $data['foto'];
+                                                  ?>" class="img-fluid testimonial-img" alt="">
                       </div>
                     </div>
                   </div>
                 </div>
-
               <?php } ?>
+
             </div>
             <div class="swiper-pagination"></div>
           </div>
 
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- ======= Events Section ======= -->
 
@@ -164,7 +156,6 @@
         </form><!--End Contact Form -->
         <?php
         error_reporting(0);
-        mysqli_select_db($db1, "db_publik");
         $button = $_GET['button'];
         $nama = $_GET['nama'];
         $email = $_GET['email'];
@@ -172,7 +163,14 @@
         $message = $_GET['message'];
         if ($button == "SEND") {
           $sql1 = "INSERT INTO tb_hubungikami VALUES ('$nama', '$email', '$subject', '$message')";
-          mysqli_query($db1, $sql1);
+          $q=mysqli_query($konek, $sql1);
+          if($q){
+            echo "
+            <script>
+            alert('Input Data Berhasil!');
+            window.location.href='contact.php';
+            </script>";
+          }
         }
         ?>
 

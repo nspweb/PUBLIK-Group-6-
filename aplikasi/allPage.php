@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include 'konek.php';
+?>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -37,13 +39,9 @@
 <body>
     <?php
     $id = $_GET['id'];
-
-    $con = mysqli_connect("localhost", "root", "", "db_publik");
-    $sql = "SELECT * FROM tb_pengaduan where id =$id";
-    $hasil = mysqli_query($con, $sql);
-    $data = mysqli_fetch_row($hasil);
+    $query = mysqli_query($konek,"SELECT * FROM tb_pengaduan where id =$id" );
+    $data = mysqli_fetch_row($query);
     ?>
-
     <!-- ======= Navbar dan Home ======= -->
     <?php
     include 'navbar.php';
@@ -106,7 +104,7 @@
                                 </p>
 
                                 <div class="position-relative mt-4">
-                                    <img src="gambar/<?php echo $data[7]; ?>" class="img-fluid" alt=""
+                                    <img src="gambar/pengaduan/<?php echo $data[7]; ?>" class="img-fluid" alt=""
                                         style="width: 500px; height: 400px;">
 
                                 </div>
@@ -124,9 +122,7 @@
         </section>
         <section>
 
-            <?php
-            include 'komentar.php';
-            ?>
+           
 
         </section>
 
