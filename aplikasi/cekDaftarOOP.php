@@ -1,6 +1,5 @@
-#E1E122071_MUHAMMAD VANNES AL QADRI
-
 <?php
+#E1E122071_MUHAMMAD VANNES AL QADRI
 class Database
 {
     private $host = "localhost", $username = "root", $password = "", $db = "db_publik", $conn; //tambhakan properti dengan visibility di awal sebelum properti
