@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-
-
 <?php
-include 'konek.php';
 session_start();
 if (!isset($_SESSION['nik'])) {
   header("location: login.php");
   exit;
 }
+include 'konek.php';
 ?>
 
+<!DOCTYPE html>
 
 <html lang="en">
 
