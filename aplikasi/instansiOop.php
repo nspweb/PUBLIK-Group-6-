@@ -145,20 +145,42 @@ $lembaga = new Lembaga($koneksiDatabase);
                     <tbody>
                         <?php
                         // Mendapatkan data instansi dari metode semuaInstansi()
-                        $hasil = $instansi->semuaInstansi();
+                        $hasilInstansi = $instansi->semuaInstansi();
                         $no = 1;
 
                         // Menampilkan data instansi dalam tabel
-                        while ($data = mysqli_fetch_array($hasil)) {
+                        while ($dataInstansi = mysqli_fetch_assoc($hasilInstansi)) {
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $no; ?></th>
                                 <td>
-                                    <a href="<?php echo $data['link']; ?>"><?php echo $data['nama_instansi']; ?></a>
+                                    <a href="<?php echo $dataInstansi['link']; ?>"><?php echo $dataInstansi['nama_instansi']; ?></a>
                                 </td>
-                                <td><?php echo $data['tipe_instansi']; ?></td>
+                                <td><?php echo $dataInstansi['tipe_instansi']; ?></td>
                                 <td align="center" valign="middle">
-                                    <img src="gambar/instansi/<?php echo $data['gambar']; ?>" alt="" style="width: 150px;">
+                                    <img src="gambar/instansi/<?php echo $dataInstansi['gambar']; ?>" alt=""
+                                        style="width: 150px;">
+                                </td>
+                            </tr>
+                            <?php
+                            $no++;
+                        }
+
+                        // Mendapatkan data lembaga dari metode semuaLembaga() pada objek Lembaga
+                        $hasilLembaga = $lembaga->semuaLembaga();
+
+                        // Menampilkan data lembaga dalam tabel
+                        while ($dataLembaga = mysqli_fetch_assoc($hasilLembaga)) {
+                            ?>
+                            <tr>
+                                <th scope="row"><?php echo $no; ?></th>
+                                <td>
+                                    <a href="<?php echo $dataLembaga['link']; ?>"><?php echo $dataLembaga['nama_lembaga']; ?></a>
+                                </td>
+                                <td><?php echo $dataLembaga['tipe_lembaga']; ?></td>
+                                <td align="center" valign="middle">
+                                    <img src="gambar/lembaga/<?php echo $dataLembaga['gambar']; ?>" alt=""
+                                        style="width: 150px;">
                                 </td>
                             </tr>
                             <?php
