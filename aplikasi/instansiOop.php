@@ -49,6 +49,17 @@ class Instansi
     }
 }
 
+// Membuat Class Lembaga yang merupakan turunan dari Instansi
+class Lembaga extends Instansi
+{
+    // Menambahkan metode khusus untuk mendapatkan data lembaga
+    public function semuaLembaga()
+    {
+        $query = "SELECT * FROM tb_lembaga";
+        return $this->database->eksekusiQuery($query);
+    }
+}
+
 // Informasi koneksi database
 $host = 'localhost';
 $username = 'root';
@@ -57,8 +68,12 @@ $database = 'db_publik';
 
 // Membuat objek Database
 $koneksiDatabase = new Database($host, $username, $password, $database);
+
 // Membuat objek Instansi dengan mengirimkan objek Database ke konstruktor
 $instansi = new Instansi($koneksiDatabase);
+
+// Membuat objek Lembaga dengan menggunakan objek Database dan Instansi
+$lembaga = new Lembaga($koneksiDatabase);
 ?>
 
 <!DOCTYPE html>
