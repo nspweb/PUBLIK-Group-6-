@@ -6,7 +6,6 @@ if (!isset($_SESSION['nik'])) {
 }
 include 'konek.php';
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -135,8 +134,37 @@ include 'konek.php';
                     <label for="instansi" class="col-sm-2 col-form-label">Instansi Yang Dituju</label>
                     <div class="col-sm-10">
                       <select name="instansi" id="instansi" class="form-control">
-                      <?php
-                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+                        <?php
+                        class Instansi extends Database
+                        {
+                          // Konstruktor Instansi yang memanggil konstruktor dari kelas induk (Database)
+                          public function __construct()
+                          {
+                            parent::__construct();
+                          }
+
+                          // Metode untuk mendapatkan semua data dari tabel tb_instansi
+                          public function getAllInstansi()
+                          {
+                            $konek = $this->getKonek();
+
+                            // Melakukan query ke database menggunakan koneksi dari kelas induk (Database)
+                            $query = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+
+                            // Mengembalikan hasil query
+                            return $query;
+                          }
+                        }
+
+                        // Contoh penggunaan kelas Instansi
+                        $instansi = new Instansi();
+
+                        // Menyimpan hasil query dalam variabel $sql
+                        $sql = $instansi->getAllInstansi();
+
+                        // Sekarang $sql berisi hasil dari query
+                        
+
 
                         while ($data = mysqli_fetch_array($sql)) {
 
@@ -158,10 +186,10 @@ include 'konek.php';
                     <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
                     <div class="col-sm-10">
                       <select name="kategori" id="kategori" class="form-control">
-                         <option value="Kesehatan">Kesehatan</option>
-                         <option value="Ketertiban">Ketertiban</option>
-                         <option value="Kekerasan">Kekerasan</option>
-                         <option value="Keresahan">Keresahan</option>
+                        <option value="Kesehatan">Kesehatan</option>
+                        <option value="Ketertiban">Ketertiban</option>
+                        <option value="Kekerasan">Kekerasan</option>
+                        <option value="Keresahan">Keresahan</option>
                       </select>
                     </div>
                   </div>

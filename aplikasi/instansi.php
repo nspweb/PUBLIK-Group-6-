@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+// E1E122004 ANNISA NURFADILAH
+
 <?php
 include 'konek.php';
 ?>
@@ -51,7 +54,7 @@ include 'konek.php';
 
 
     <section>
-        <div >
+        <div>
             <h1 style="text-align: center;"><span>INSTANSI YANG TERHUBUNG</span></h1>
         </div>
         <BR><br>
@@ -69,7 +72,36 @@ include 'konek.php';
                     </thead>
                     <tbody>
                         <?php
-                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+                        #E1E122004_ANNISA NURFADILAH
+
+                        class Instansi extends Database
+                        {
+                            // Konstruktor Instansi yang memanggil konstruktor dari kelas induk (Database)
+                            public function __construct()
+                            {
+                                parent::__construct();
+                            }
+
+                            // Metode untuk mendapatkan semua data dari tabel tb_instansi
+                            public function getAllInstansi()
+                            {
+                                $konek=$this->getKonek(); 
+                                
+                                // Melakukan query ke database menggunakan koneksi dari kelas induk (Database)
+                                $query = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+
+                                // Mengembalikan hasil query
+                                return $query;
+                            }
+                        }
+
+                        // Contoh penggunaan kelas Instansi
+                        $instansi = new Instansi();
+
+                        // Menyimpan hasil query dalam variabel $sql
+                        $sql = $instansi->getAllInstansi();
+
+
                         $no = 1;
                         while ($data = mysqli_fetch_array($sql)) {
                             ?>
