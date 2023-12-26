@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-#AULIYA AFIFAH ADNAN HAKIM_E1E122046
 <?php
+#AULIYA AFIFAH ADNAN HAKIM_E1E122046
 include 'konek.php';
 ?>
 
@@ -73,10 +73,28 @@ include 'konek.php';
 
                     <div class="row gy-4 mt-5">
                         <?php
+                        class Pengaduan extends Database
+                        {
+                            public function __construct()
+                            {
+                                parent::__construct();
+                            }
+                        
+                            public function getAllPengaduan()
+                            {
+                                $konek=$this->getKonek();
+                                $query = mysqli_query($konek, "SELECT * FROM tb_pengaduan WHERE id >= 1");
+                                return $query;
+                            }
+                        }
+                        
+                        $pengaduan = new Pengaduan();
+                        
+                        $sql = $pengaduan->getAllPengaduan();
+                        
 
-                        $query = mysqli_query($konek, "SELECT * FROM tb_pengaduan WHERE id >=1");
 
-                        while ($data = mysqli_fetch_row($query)) {
+                        while ($data = mysqli_fetch_row($sql)) {
 
                             ?>
 
