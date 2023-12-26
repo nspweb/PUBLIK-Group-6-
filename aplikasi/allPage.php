@@ -39,8 +39,25 @@ include 'konek.php';
 <body>
     <?php
     $id = $_GET['id'];
-    $query = mysqli_query($konek,"SELECT * FROM tb_pengaduan where id =$id" );
-    $data = mysqli_fetch_row($query);
+    class Pengaduan extends Database
+    {
+        public function __construct()
+        {
+            parent::__construct();
+        }
+    
+        public function getAllPengaduan($id)
+        {
+            $konek=$this->getKonek();
+            $query = mysqli_query($konek, "SELECT * FROM tb_pengaduan WHERE id >= $id");
+            return $query;
+        }
+    }
+    
+    $pengaduan = new Pengaduan();
+    
+    $sql = $pengaduan->getAllPengaduan($id);
+    $data = mysqli_fetch_row($sql);
     ?>
     <!-- ======= Navbar dan Home ======= -->
     <?php
