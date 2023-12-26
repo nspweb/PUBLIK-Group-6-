@@ -1,73 +1,29 @@
 <?php
 // E1E122004 - ANNISA NURFADILAH
+include 'konek.php';
 
-// Membuat Class Database untuk mengelola koneksi dan query database
-class Database
-{
-    private $koneksi;
-
-    // Konstruktor untuk menginisialisasi koneksi ke database
-    public function __construct($host, $username, $password, $database)
-    {
-        $this->koneksi = new mysqli($host, $username, $password, $database);
-
-        // Mengecek koneksi database
-        if ($this->koneksi->connect_error) {
-            die("Koneksi gagal: " . $this->koneksi->connect_error);
-        }
-    }
-
-    // Metode untuk mengeksekusi query database
-    public function eksekusiQuery($query)
-    {
-        return $this->koneksi->query($query);
-    }
-
-    // Metode untuk menutup koneksi database
-    public function tutupKoneksi()
-    {
-        $this->koneksi->close();
-    }
-}
-
-// Membuat Class Instansi untuk mengelola data instansi
 class Instansi
 {
-    private $database;
+    protected $database; // Properti protected yang menyimpan objek dari database
 
-    // Konstruktor untuk menginisialisasi objek Database
-    public function __construct($database)
+    public function __construct($database) // Construct kelas instansi berupa objek dari kelas database
     {
         $this->database = $database;
     }
 
-    // Metode untuk mendapatkan semua data instansi dari database
-    public function semuaInstansi()
+    public function semuaInstansi() // Metode untuk memanggil semua data instansi
     {
-        $query = "SELECT * FROM tb_instansi";
-        return $this->database->eksekusiQuery($query);
+        return $this->database->eksekusiQuery("SELECT * FROM tb_instansi"); // Menggunakan objek database yang akan dikembalikan ke metode eksekuesiQuery
     }
 }
 
-// Membuat Class Lembaga yang merupakan turunan dari Instansi
-class Lembaga extends Instansi
+class Lembaga extends Instansi // Child class 
 {
-    // Menambahkan metode khusus untuk mendapatkan data lembaga
     public function semuaLembaga()
     {
-        $query = "SELECT * FROM tb_lembaga";
-        return $this->database->eksekusiQuery($query);
+        return $this->database->eksekusiQuery("SELECT * FROM tb_instansi"); // Menggunakan objek database yang akan dikembalikan ke metode eksekuesiQuery
     }
 }
-
-// Informasi koneksi database
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'db_publik';
-
-// Membuat objek Database
-$koneksiDatabase = new Database($host, $username, $password, $database);
 
 // Membuat objek Instansi dengan mengirimkan objek Database ke konstruktor
 $instansi = new Instansi($koneksiDatabase);
@@ -75,6 +31,7 @@ $instansi = new Instansi($koneksiDatabase);
 // Membuat objek Lembaga dengan menggunakan objek Database dan Instansi
 $lembaga = new Lembaga($koneksiDatabase);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -144,11 +101,9 @@ $lembaga = new Lembaga($koneksiDatabase);
                     </thead>
                     <tbody>
                         <?php
-                        // Mendapatkan data instansi dari metode semuaInstansi()
                         $hasilInstansi = $instansi->semuaInstansi();
                         $no = 1;
 
-                        // Menampilkan data instansi dalam tabel
                         while ($dataInstansi = mysqli_fetch_assoc($hasilInstansi)) {
                             ?>
                             <tr>
@@ -158,29 +113,25 @@ $lembaga = new Lembaga($koneksiDatabase);
                                 </td>
                                 <td><?php echo $dataInstansi['tipe_instansi']; ?></td>
                                 <td align="center" valign="middle">
-                                    <img src="gambar/instansi/<?php echo $dataInstansi['gambar']; ?>" alt=""
-                                        style="width: 150px;">
+                                    <img src="gambar/instansi/<?php echo $dataInstansi['gambar']; ?>" alt="" style="width: 150px;">
                                 </td>
                             </tr>
                             <?php
                             $no++;
                         }
 
-                        // Mendapatkan data lembaga dari metode semuaLembaga() pada objek Lembaga
                         $hasilLembaga = $lembaga->semuaLembaga();
 
-                        // Menampilkan data lembaga dalam tabel
                         while ($dataLembaga = mysqli_fetch_assoc($hasilLembaga)) {
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $no; ?></th>
                                 <td>
-                                    <a href="<?php echo $dataLembaga['link']; ?>"><?php echo $dataLembaga['nama_lembaga']; ?></a>
+                                    <a href="<?php echo $dataLembaga['link']; ?>"><?php echo $dataLembaga['nama_instansi']; ?></a>
                                 </td>
-                                <td><?php echo $dataLembaga['tipe_lembaga']; ?></td>
+                                <td><?php echo $dataLembaga['tipe_instansi']; ?></td>
                                 <td align="center" valign="middle">
-                                    <img src="gambar/lembaga/<?php echo $dataLembaga['gambar']; ?>" alt=""
-                                        style="width: 150px;">
+                                    <img src="gambar/instansi/<?php echo $dataLembaga['gambar']; ?>" alt="" style="width: 150px;">
                                 </td>
                             </tr>
                             <?php
@@ -194,7 +145,6 @@ $lembaga = new Lembaga($koneksiDatabase);
     </section>
 
     <?php
-    // Menutup koneksi database setelah selesai
     $koneksiDatabase->tutupKoneksi();
     ?>
 
