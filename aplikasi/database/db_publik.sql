@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Des 2023 pada 05.11
+-- Waktu pembuatan: 26 Des 2023 pada 16.32
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.1.17
 
@@ -164,9 +164,7 @@ INSERT INTO `tb_pengaduan` (`id`, `judul`, `isi`, `tanggal`, `lokasi`, `instansi
 (10, 'Indikasi Pengedaran Narkoba', 'Antonio diduga melakukan transaksi narkoba bersama seorang temannya ', '2023-09-26', 'Bat-Bat', 'BNN Kota Kendari', 'Kekerasan', '8.jpg'),
 (11, 'Pencurian', 'Seorang Pria Terekam CCTV gasak HP warga di Kota Kendari', '2023-09-30', 'Kecamatan Poasia', 'Polresta Kendari', 'Keresahan', '9.jpg'),
 (12, 'Pencurian Motor', 'Terjadi Pencurian Motor di Lorong Mangkerey , Motor Scoopy mere honda dengan DT2567FF warna hitam merah', '2023-10-03', 'Jalan Mangkerey', 'Polresta Kendari', 'Keresahan', '10.jpg'),
-(13, 'Perusakan Fasilitas Negara', 'Seorang warga dengan inisial UB(20) ditemukan merusak fasilitas kantor kelurahan Andonuhu', '2023-10-07', 'Kantor Kelurahan Andonuhu', 'Dinas Satpol PP Kendari', 'Ketertiban', '11.jpg'),
-(0, 'test', 'tes', '2023-12-06', 'Jln. Martandu', 'Dinas Kesehatan(Dinkes) Kota Kendari', 'Kesehatan', 'wp.jpg'),
-(0, 'test', 't', '2023-12-30', 'test', 'Dinas Kesehatan(Dinkes) Kota Kendari', 'Kesehatan', 'wp1.jpg');
+(13, 'Perusakan Fasilitas Negara', 'Seorang warga dengan inisial UB(20) ditemukan merusak fasilitas kantor kelurahan Andonuhu', '2023-10-07', 'Kantor Kelurahan Andonuhu', 'Dinas Satpol PP Kendari', 'Ketertiban', '11.jpg');
 
 -- --------------------------------------------------------
 
@@ -213,6 +211,12 @@ ALTER TABLE `tb_instansi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `tb_pengaduan`
+--
+ALTER TABLE `tb_pengaduan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
@@ -233,6 +237,12 @@ ALTER TABLE `tb_anggota`
 --
 ALTER TABLE `tb_instansi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pengaduan`
+--
+ALTER TABLE `tb_pengaduan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

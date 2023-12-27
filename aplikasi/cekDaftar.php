@@ -1,6 +1,22 @@
 <?php
 
 include 'konek.php';
+class userDaftar extends Database
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function cekDaftar($nik,$namalengkap, $email,$no_telepon,$password)
+    {
+        $konek = $this->getKonek();
+        $query = mysqli_query($konek, "INSERT INTO tb_user VALUES('$nik','$namalengkap','$email','$no_telepon', '$password')");
+        return $query;
+    }
+}
+$daftar = new userDaftar();
+
 
 if (isset($_POST['btnDaftar'])) {
     $nik = $_POST['nik'];
@@ -10,9 +26,9 @@ if (isset($_POST['btnDaftar'])) {
     $password = $_POST['password'];
 
     // Register user
-    $query = mysqli_query($konek, "INSERT INTO tb_user VALUES('$nik','$namalengkap','$email','$no_telepon', '$password')");
+    $sql = $daftar->cekDaftar($nik,$namalengkap, $email,$no_telepon,$password);
 
-    if ($query) {
+    if ($sql) {
         // Registration successful
         echo "
         <script>

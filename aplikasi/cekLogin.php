@@ -1,16 +1,34 @@
 <?php
 
 include 'konek.php';
+class userLogin extends Database
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function cekLogin($nik)
+    {
+        $konek = $this->getKonek();
+        $query = mysqli_query($konek, "SELECT * FROM tb_user WHERE nik='$nik'");
+        return $query;
+    }
+}
+
+$login = new userLogin();
+
 
 if (isset($_POST['btnLogin'])) {
     $nik = $_POST['nik'];
     $password = $_POST['password'];
 
     // Authenticate user
-    $query = mysqli_query($konek, "SELECT * FROM tb_user WHERE nik='$nik'");
-    $data = mysqli_fetch_array($query);
+    $sql = $login->cekLogin($nik);
+    
+    $data = mysqli_fetch_array($sql);
 
-    if (mysqli_num_rows($query) >= 1) {
+    if (mysqli_num_rows($sql) >= 1) {
         if ($data['password'] == $password) {
             // Login is valid
             session_start();

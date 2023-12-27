@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <?php
+// E1E122004 ANNISA NURFADILAH
 include 'konek.php';
 ?>
 <html lang="en">
@@ -33,13 +35,6 @@ include 'konek.php';
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: Yummy
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -51,7 +46,7 @@ include 'konek.php';
 
 
     <section>
-        <div >
+        <div>
             <h1 style="text-align: center;"><span>INSTANSI YANG TERHUBUNG</span></h1>
         </div>
         <BR><br>
@@ -69,31 +64,64 @@ include 'konek.php';
                     </thead>
                     <tbody>
                         <?php
-                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+                        #E1E122004_ANNISA NURFADILAH
+
+                        class Instansi extends Database
+                        {
+                            // Konstruktor Instansi yang memanggil konstruktor dari kelas induk (Database)
+                            public function __construct()
+                            {
+                                parent::__construct();
+                            }
+
+                            // Metode untuk mendapatkan semua data dari tabel tb_instansi
+                            public function getAllInstansi()
+                            {
+                                $konek=$this->getKonek(); 
+                                
+                                // Melakukan query ke database menggunakan koneksi dari kelas induk (Database)
+                                $query = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+
+                                // Mengembalikan hasil query
+                                return $query;
+                            }
+                        }
+
+                        // Contoh penggunaan kelas Instansi
+                        $instansi = new Instansi();
+
+                        // Menyimpan hasil query dalam variabel $sql
+                        $sql = $instansi->getAllInstansi();
+
+
+                        // Inisialisasi variabel $no dengan nilai awal 1 untuk menyimpan nomor urutan.
                         $no = 1;
+
+                        // Memulai perulangan while untuk mengambil data dari hasil query menggunakan mysqli_fetch_array.
                         while ($data = mysqli_fetch_array($sql)) {
                             ?>
                             <tr>
+                                <!-- Membuat sel <th> untuk menyimpan nomor urutan. -->
                                 <th scope="row">
                                     <?php echo $no; ?>
                                 </th>
+                                <!-- Membuat sel <td> untuk menampilkan data dan membuat tautan ke halaman yang ditentukan. -->
                                 <td>
-
-
                                     <a href="<?php echo $data['link']; ?>">
                                         <?php echo $data['nama_instansi']; ?>
                                     </a>
-
-
                                 </td>
+                                <!-- Membuat sel <td> untuk menampilkan tipe instansi. -->
                                 <td>
                                     <?php echo $data['tipe_instansi']; ?>
                                 </td>
+                                <!-- Membuat sel <td> untuk menampilkan gambar instansi dengan lebar 150px. -->
                                 <td align="center" valign="middle">
                                     <img src="gambar/instansi/<?php echo $data['gambar']; ?>" alt="" style="width: 150px;">
                                 </td>
                             </tr>
                             <?php
+                            // Menambahkan nilai $no untuk nomor urutan pada setiap iterasi perulangan.
                             $no++;
                         }
                         ?>
@@ -105,32 +133,6 @@ include 'konek.php';
     </section>
 
     <main id="main">
-
-        <!-- ======= About Section ======= -->
-
-        <!-- ======= Why Us Section ======= -->
-
-        <!-- ======= Stats Counter Section ======= -->
-
-        <!-- ======= Menu Section ======= -->
-
-
-        <!-- ======= Testimonials Section ======= -->
-
-
-        <!-- ======= Events Section ======= -->
-
-        <!-- ======= Chefs Section ======= -->
-
-
-        <!-- ======= Book A Table Section ======= -->
-        <!-- End Book A Table Section -->
-
-        <!-- ======= Gallery Section ======= -->
-        <!-- End Gallery Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <!-- End Contact Section -->
 
     </main><!-- End #main -->
 

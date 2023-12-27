@@ -1,12 +1,16 @@
 <?php
+// E1E122004 ANNISA NURFADILAH
+
+// Memulai sesi untuk mengelola data sesi pada PHP.
 session_start();
+// Memeriksa apakah sesi dengan nama 'nik' belum diatur atau tidak ada.
 if (!isset($_SESSION['nik'])) {
+  // Jika sesi 'nik' belum diatur, melakukan redirect ke halaman login.php.
   header("location: login.php");
   exit;
 }
 include 'konek.php';
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -59,19 +63,9 @@ include 'konek.php';
     }
   </style>
 
-  <!-- =======================================================
-  * Template Name: Yummy
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
-
-
-
   <!-- ======= Navbar dan Home ======= -->
   <?php
   include 'navbar.php';
@@ -135,9 +129,35 @@ include 'konek.php';
                     <label for="instansi" class="col-sm-2 col-form-label">Instansi Yang Dituju</label>
                     <div class="col-sm-10">
                       <select name="instansi" id="instansi" class="form-control">
-                      <?php
-                        $sql = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+                        <?php
+                        class Instansi extends Database
+                        {
+                          // Konstruktor Instansi yang memanggil konstruktor dari kelas induk (Database)
+                          public function __construct()
+                          {
+                            parent::__construct();
+                          }
 
+                          // Metode untuk mendapatkan semua data dari tabel tb_instansi
+                          public function getAllInstansi()
+                          {
+                            $konek = $this->getKonek();
+
+                            // Melakukan query ke database menggunakan koneksi dari kelas induk (Database)
+                            $query = mysqli_query($konek, 'SELECT * FROM tb_instansi');
+
+                            // Mengembalikan hasil query
+                            return $query;
+                          }
+                        }
+
+                        // Contoh penggunaan kelas Instansi
+                        $instansi = new Instansi();
+
+                        // Menyimpan hasil query dalam variabel $sql
+                        $sql = $instansi->getAllInstansi();
+
+                        // Sekarang $sql berisi hasil dari query
                         while ($data = mysqli_fetch_array($sql)) {
 
                           ?>
@@ -158,10 +178,10 @@ include 'konek.php';
                     <label for="kategori" class="col-sm-2 col-form-label">Pilih Kategori Laporan</label>
                     <div class="col-sm-10">
                       <select name="kategori" id="kategori" class="form-control">
-                         <option value="Kesehatan">Kesehatan</option>
-                         <option value="Ketertiban">Ketertiban</option>
-                         <option value="Kekerasan">Kekerasan</option>
-                         <option value="Keresahan">Keresahan</option>
+                        <option value="Kesehatan">Kesehatan</option>
+                        <option value="Ketertiban">Ketertiban</option>
+                        <option value="Kekerasan">Kekerasan</option>
+                        <option value="Keresahan">Keresahan</option>
                       </select>
                     </div>
                   </div>
@@ -188,11 +208,6 @@ include 'konek.php';
       </div>
 
     </section>
-    <!-- ======= Why Us Section ======= -->
-
-    <!-- ======= Stats Counter Section ======= -->
-
-    <!-- ======= Menu Section ======= -->
 
     <section id="stats-counter" class="stats-counter">
       <div class="container" data-aos="zoom-out">
@@ -233,30 +248,10 @@ include 'konek.php';
           < <div class="row">
             <a href="instansi.php" class="btn btn-primary">Lihat Selengkapnya</a>
         </div>
-
       </div>
-
       </div>
     </section>
-    <!-- ======= Testimonials Section ======= -->
-
-
-    <!-- ======= Events Section ======= -->
-
-
-    <!-- ======= Chefs Section ======= -->
-
-
-    <!-- ======= Book A Table Section ======= -->
-    <!-- End Book A Table Section -->
-
-    <!-- ======= Gallery Section ======= -->
-    <!-- End Gallery Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
-  </main><!-- End #main -->
+  </main>
 
   <!-- ======= Footer ======= -->
   <?php

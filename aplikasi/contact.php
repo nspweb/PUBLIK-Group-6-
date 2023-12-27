@@ -3,6 +3,7 @@
 include 'konek.php';
 ?>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -18,7 +19,8 @@ include 'konek.php';
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +28,8 @@ include 'konek.php';
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -43,13 +46,13 @@ include 'konek.php';
   <!-- End Navbar-->
 
 
-    <!-- ======= Stats Counter Section ======= -->
+  <!-- ======= Stats Counter Section ======= -->
 
-    <!-- ======= Menu Section ======= -->
+  <!-- ======= Menu Section ======= -->
 
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg" style="background: #3b5998; ">
+  <!-- ======= Testimonials Section ======= -->
+  <section id="testimonials" class="testimonials section-bg" style="background: #3b5998; ">
     <div class="container">
       <div class="card">
         <div class="container" data-aos="fade-up">
@@ -63,11 +66,28 @@ include 'konek.php';
           <div class="slides-1 swiper" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper-wrapper">
               <?php
-              $sql = mysqli_query($konek, 'SELECT * FROM tb_anggota');
+              class Anggota extends Database
+              {
+                public function __construct()
+                {
+                  parent::__construct();
+                }
+
+                public function getAnggota()
+                {
+                  $konek = $this->getKonek();
+                  $query = mysqli_query($konek, 'SELECT * FROM tb_anggota');
+                  return $query;
+                }
+              }
+
+              $anggota = new Anggota();
+
+              $sql = $anggota->getAnggota();
 
               while ($data = mysqli_fetch_array($sql)) {
 
-              ?>
+                ?>
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -92,14 +112,15 @@ include 'konek.php';
                             ?>
                           </h4>
                           <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                           </div>
                         </div>
                       </div>
                       <div class="col-lg-2 text-center">
                         <img src="gambar/anggota/<?php
-                                                  echo $data['foto'];
-                                                  ?>" class="img-fluid testimonial-img" alt="">
+                        echo $data['foto'];
+                        ?>" class="img-fluid testimonial-img" alt="">
                       </div>
                     </div>
                   </div>
@@ -115,69 +136,70 @@ include 'konek.php';
     </div>
   </section>
 
-    <!-- ======= Events Section ======= -->
+  <!-- ======= Events Section ======= -->
 
 
-    <!-- ======= Chefs Section ======= -->
+  <!-- ======= Chefs Section ======= -->
 
 
-    <!-- ======= Book A Table Section ======= -->
-    <!-- End Book A Table Section -->
+  <!-- ======= Book A Table Section ======= -->
+  <!-- End Book A Table Section -->
 
-    <!-- ======= Gallery Section ======= -->
-    <!-- End Gallery Section -->
+  <!-- ======= Gallery Section ======= -->
+  <!-- End Gallery Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
 
 
 
-        
 
-        <form action="" method="GET">
-          <div class="row">
-            <div class="col-xl-6 form-group">
-              <input type="text" name="nama" class="form-control" id="nama" placeholder="Your Name">
-            </div>
-            <div class="col-xl-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
-            </div>
+
+      <form action="" method="GET">
+        <div class="row">
+          <div class="col-xl-6 form-group">
+            <input type="text" name="nama" class="form-control" id="nama" placeholder="Your Name">
           </div>
-          <div class="form-group">
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+          <div class="col-xl-6 form-group">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
           </div>
-          <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+        </div>
 
-          <div class="text-center">
-            <button type="submit" name="button" value="SEND">Send Message</button></div>
-        </form><!--End Contact Form -->
-        <?php
-        error_reporting(0);
-        $button = $_GET['button'];
-        $nama = $_GET['nama'];
-        $email = $_GET['email'];
-        $subject = $_GET['subject'];
-        $message = $_GET['message'];
-        if ($button == "SEND") {
-          $sql1 = "INSERT INTO tb_hubungikami VALUES ('$nama', '$email', '$subject', '$message')";
-          $q=mysqli_query($konek, $sql1);
-          if($q){
-            echo "
+        <div class="text-center">
+          <button type="submit" name="button" value="SEND">Send Message</button>
+        </div>
+      </form><!--End Contact Form -->
+      <?php
+      error_reporting(0);
+      $button = $_GET['button'];
+      $nama = $_GET['nama'];
+      $email = $_GET['email'];
+      $subject = $_GET['subject'];
+      $message = $_GET['message'];
+      if ($button == "SEND") {
+        $sql1 = "INSERT INTO tb_hubungikami VALUES ('$nama', '$email', '$subject', '$message')";
+        $q = mysqli_query($konek, $sql1);
+        if ($q) {
+          echo "
             <script>
             alert('Input Data Berhasil!');
             window.location.href='contact.php';
             </script>";
-          }
         }
-        ?>
+      }
+      ?>
 
-      </div>
-    </section><!-- End Contact Section -->
+    </div>
+  </section><!-- End Contact Section -->
 
- 
+
 
   <!-- ======= Footer ======= -->
   <?php

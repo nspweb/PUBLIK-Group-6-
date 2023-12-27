@@ -99,7 +99,7 @@
                                         kebijakan yang inklusif.
                                     </p>
                                 </div>
-                                <form method="post" action="">
+                                <form method="post" action="cekDaftar.php">
                                 <div class="card-body mb-4">
                                     <label for="nik" class="form-label">NIK</label>
                                     <div class="input-group mb-4">
@@ -149,10 +149,6 @@
 
                                 </div>
                             </div>
-                            <!-- Checkbox -->
-
-
-                            <!-- Submit button -->
 
                         </form>
                     </div>
@@ -189,6 +185,3 @@
     -->
 
 </html>
-<?php
-include 'cekDaftar.php';
-?>
