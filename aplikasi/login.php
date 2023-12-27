@@ -1,11 +1,21 @@
 <?php
+// E1E122004 ANNISA NURFADILAH
+
+// Memulai sesi untuk mengelola data sesi pada PHP.
 session_start();
+
+// Memeriksa apakah sesi dengan nama 'nik' sudah ada.
 if (isset($_SESSION['nik'])) {
-  header("location: index.php");
-  exit;
+    // Jika sesi 'nik' sudah ada, redirect pengguna ke halaman index.php.
+    header("location: index.php");
+    
+    // Menghentikan eksekusi skrip selanjutnya setelah melakukan redirect.
+    exit;
 }
+
 include 'konek.php';
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -71,11 +81,12 @@ include 'konek.php';
     </div>
   </section>
   <?php
+  // Memeriksa apakah terdapat parameter 'pesan' dalam data GET dari URL.
   if (isset($_GET['pesan'])) {
     ?>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Login Gagal!</strong>
-      <?php echo $_GET['pesan']; ?>
+      <?php echo $_GET['pesan']; ?>  <!-- Menampilkan pesan yang diterima dari parameter 'pesan' dalam URL. --> 
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <?php

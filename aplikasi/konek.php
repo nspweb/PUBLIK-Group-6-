@@ -1,13 +1,19 @@
 <?php
+// E1E122004 ANNISA NURFADILAH
 class Database
 {
-    private $host = "localhost", $username = "root", $password = "", $db = "db_publik", $conn; //tambhakan properti dengan visibility di awal sebelum properti
+    // Properti dengan visibility diawali sebelum properti untuk menambahkan kejelasan dalam pembacaan kode.
+    private $host = "localhost", $username = "root", $password = "", $db = "db_publik", $conn;
 
-    public function __construct() //membuat konstruktornya yang merupakan magic metod pada php
+    // Konstruktor, merupakan magic method pada PHP, digunakan untuk inisialisasi objek saat objek dibuat.
+    public function __construct()
     {
-        $this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->db); //this->untuk menyamakan properti di luar function,karena function 
+        // Menghubungkan ke database menggunakan properti yang telah ditentukan sebelumnya.
+        $this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->db);
     }
-    public function getKonek() //membuat metod getKonek yang akan mengembalikan nilai $con
+
+    // Metode getKonek digunakan untuk mengembalikan nilai dari properti $conn.
+    public function getKonek()
     {
         return $this->conn;
     }
