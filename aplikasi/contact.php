@@ -176,7 +176,9 @@ include 'konek.php';
           <button type="submit" name="button" value="SEND">Send Message</button>
         </div>
       </form><!--End Contact Form -->
+      
       <?php
+      // Memasukan Pesan kedalam tabel hubungi kami
       error_reporting(0);
       $button = $_GET['button'];
       $nama = $_GET['nama'];
