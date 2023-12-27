@@ -21,9 +21,7 @@ class Proses extends Database
 }
 //Membuat objek dari class Proses
 $proses = new Proses();
-
-
-
+// Mengecek apakah tombol proses diklik dan memiliki nilai 'tambah'
 if (isset($_POST['btnProses']) && $_POST['btnProses'] == "tambah") {
     $judul = $_POST['judul'];
     $isi = $_POST['isi'];
