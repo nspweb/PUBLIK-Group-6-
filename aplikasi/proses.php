@@ -1,13 +1,16 @@
 <?php
-#AULIYA AFIFAH ADNAN HAKIM_E1E122046
+
+// Menginclude file konek.php yang berisi koneksi database
 include 'konek.php';
+
+// Membuat class Proses berupa turunan dari class Database
 class Proses extends Database
 {
     public function __construct()
     {
         parent::__construct();
     }
-
+    // Metode untuk menambahkan data pengaduan ke database
     public function getProses($judul, $isi, $tanggal, $lokasi, $instansi, $kategori, $lampiranFileName)
     {
         $konek = $this->getKonek();
@@ -16,7 +19,7 @@ class Proses extends Database
         return $query;
     }
 }
-
+//Membuat objek dari class Proses
 $proses = new Proses();
 
 
