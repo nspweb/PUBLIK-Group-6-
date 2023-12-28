@@ -39,14 +39,14 @@ include 'konek.php';
 <body>
     <?php
     $id = $_GET['id'];
-    class Pengaduan extends Database
+    class Pengaduan extends Database implements eksekusiQuery
     {
         public function __construct()
         {
             parent::__construct();
         }
     
-        public function getAllPengaduan($id)
+        public function Query($id)
         {
             $konek=$this->getKonek();
             $query = mysqli_query($konek, "SELECT * FROM tb_pengaduan WHERE id >= $id");
@@ -56,7 +56,7 @@ include 'konek.php';
     
     $pengaduan = new Pengaduan();
     
-    $sql = $pengaduan->getAllPengaduan($id);
+    $sql = $pengaduan->Query($id);
     $data = mysqli_fetch_row($sql);
     ?>
     <!-- ======= Navbar dan Home ======= -->
