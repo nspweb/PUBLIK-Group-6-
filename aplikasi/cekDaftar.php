@@ -1,7 +1,7 @@
 <?php
 
 include 'konek.php';
-// pali_e1e122106
+
 if (isset($_POST['btnDaftar'])) {
     $nik = $_POST['nik'];
     $namalengkap = $_POST['namalengkap'];
