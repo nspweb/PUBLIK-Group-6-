@@ -99,6 +99,7 @@
                                         kebijakan yang inklusif.
                                     </p>
                                 </div>
+                                <!-- input data form -->
                                 <form method="post" action="cekDaftar.php">
                                 <div class="card-body mb-4">
                                     <label for="nik" class="form-label">NIK</label>
