@@ -3,10 +3,12 @@
 // Include file untuk koneksi database
 include 'konek.php';
 
-// Interface Registrasi
-// Interface menyediakan kerangka atau kontrak yang harus dipatuhi oleh kelas-kelas yang mengimplementasikannya.
+// Polimorfisme memungkinkan objek dari kelas yang berbeda untuk dianggap sebagai objek dari tipe yang sama saat digunakan melalui interface yang sama
+
+// Fungsi yang mana kelas-kelas harus mengimplementasikannya.
 interface Registrasi {
     public function cekDaftar($nik, $namalengkap, $email, $no_telepon, $password);
+    public function cekLogin($nik);
 }
 
 // Kelas userDaftar yang meng-extend Database dan meng-implement Registrasi
@@ -24,10 +26,40 @@ class userDaftar extends Database implements Registrasi
         $query = mysqli_query($konek, "INSERT INTO tb_user VALUES('$nik','$namalengkap','$email','$no_telepon', '$password')");
         return $query;
     }
+    public function cekLogin($nik)
+    {
+        $konek = $this->getKonek();
+        $query = mysqli_query($konek, "SELECT * FROM tb_user WHERE nik='$nik'");
+        return $query;
+    }
+}
+class userLogin extends Database implements Registrasi
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    public function cekDaftar($nik, $namalengkap, $email, $no_telepon, $password)
+    {
+        $konek = $this->getKonek();
+        $query = mysqli_query($konek, "INSERT INTO tb_user VALUES('$nik','$namalengkap','$email','$no_telepon', '$password')");
+        return $query;
+    }
+    public function cekLogin($nik)
+    {
+        $konek = $this->getKonek();
+        $query = mysqli_query($konek, "SELECT * FROM tb_user WHERE nik='$nik'");
+        return $query;
+    }
 }
 
-// Instance objek dari kelas userDaftar
+// Objek
 $daftar = new userDaftar();
+$login = new userLogin();
+
+// Polimorfisme: Keduanya bisa dianggap sebagai objek Registrasi
+$daftarResult = $daftar->cekDaftar($nik, $namalengkap, $email, $no_telepon, $password);
+$loginResult = $login->cekLogin($nik);
 
 // Proses registrasi saat tombol btnDaftar diklik
 if (isset($_POST['btnDaftar'])) {

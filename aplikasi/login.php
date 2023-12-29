@@ -71,7 +71,7 @@ include 'konek.php';
 
   <section>
     <div class="p-5 text-center bg-body-tertiary">
-      <h1 class="h1-container">PUBLIK</h1>
+      <h1 class="h1-container">selamat ujian</h1>
       <p class="lead">PUBLIK atau Pusat Aduan dan Berita Layanan untuk Isu dan Keresahan adalah suatu platform atau
         aplikasi yang
         dirancang untuk memberikan pelayanan atau saluran bagi masyarakat khususnya di kota Kendari agar dapat

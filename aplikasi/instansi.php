@@ -86,13 +86,30 @@ include 'konek.php';
                                 return $query;
                             }
                         }
-
-                        // Contoh penggunaan kelas Instansi
+                        
                         $instansi = new Instansi();
+                        
+                        // Kelas Baru
+                        class Lembaga extends Database {
+                            public function __construct($kantor, $jalan) {
+                                $this->kantor = $kantor;
+                                $this->jalan = $jalan;
+                              }
+                            
+                              public function setLembaga($kantor) {
+                                $this->kantor = $kantor;
+                              }
+                            
+                              public function getLembaga($kantor) {
+                                return  $this->$kantor;
+                              }
+                        }
+                        // Objek
+                        $lembaga1 = new Lembaga('Lembaga1', 'Jalan 1'); //objek 1
+                        $lembaga2 = new Lembaga('Lembaga2', 'Jalan 2'); //objek 2
 
                         // Menyimpan hasil query dalam variabel $sql
                         $sql = $instansi->getAllInstansi();
-
 
                         // Inisialisasi variabel $no dengan nilai awal 1 untuk menyimpan nomor urutan.
                         $no = 1;
