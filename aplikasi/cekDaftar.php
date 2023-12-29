@@ -57,10 +57,6 @@ class userLogin extends Database implements Registrasi
 $daftar = new userDaftar();
 $login = new userLogin();
 
-// Polimorfisme: Keduanya bisa dianggap sebagai objek Registrasi
-$daftarResult = $daftar->cekDaftar($nik, $namalengkap, $email, $no_telepon, $password);
-$loginResult = $login->cekLogin($nik);
-
 // Proses registrasi saat tombol btnDaftar diklik
 if (isset($_POST['btnDaftar'])) {
     // Ambil data dari form
